@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Reports</h2>
+
+<h3>Revenue Report</h3>
+<p>Total Revenue: ₹{{ revenue.total if revenue and revenue.total else 0 }}</p>
+
+<h3>Sales Report</h3>
+<table>
+    <tr><th>Product</th><th>Total Sold</th></tr>
+    {% for s in sales %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.total_sold }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Stock Report</h3>
+<table>
+    <tr><th>Product</th><th>Stock Remaining</th></tr>
+    {% for s in stock %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.stock }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+

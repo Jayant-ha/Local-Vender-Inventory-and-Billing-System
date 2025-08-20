@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Customers</h2>
+
+<form method="POST" class="form">
+    <div class="form-group">
+        <label for="customer_name">Customer Name:</label>
+        <input type="text" id="customer_name" name="name" placeholder="Customer Name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="customer_contact">Contact:</label>
+        <input type="text" id="customer_contact" name="contact" placeholder="Contact" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="customer_address">Address:</label>
+        <input type="text" id="customer_address" name="address" placeholder="Address">
+    </div>
+    
+    <button type="submit">Add Customer</button>
+</form>
+
+<table>
+    <tr>
+        <th>ID</th><th>Name</th><th>Contact</th><th>Address</th>
+    </tr>
+    {% for c in customers %}
+    <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.name }}</td>
+        <td>{{ c.contact }}</td>
+        <td>{{ c.address }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

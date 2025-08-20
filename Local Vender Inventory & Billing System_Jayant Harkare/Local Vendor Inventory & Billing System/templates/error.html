@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="error-container">
+    <h2>Error</h2>
+    <div class="error-message">
+        <p>{{ error_message }}</p>
+    </div>
+    <div class="error-actions">
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Return to Dashboard</a>
+        <a href="javascript:history.back()" class="btn btn-secondary">Go Back</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Create Bill</h2>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="customer_id">Select Customer:</label>
+        <select name="customer_id" id="customer_id" required>
+            <option value="">-- Select Customer --</option>
+            {% for c in customers %}
+            <option value="{{ c.id }}">{{ c.name }} ({{ c.contact }})</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <h3>Products</h3>
+    {% for p in products %}
+    <div class="form-group product-row">
+        <label for="qty_{{ p.id }}">{{ p.name }} (₹{{ "%.2f"|format(p.price) }}, Stock: {{ p.stock }})</label>
+        <input type="number" id="qty_{{ p.id }}" name="qty_{{ p.id }}" min="0" max="{{ p.stock }}" value="0" class="qty-input">
+    </div>
+    {% endfor %}
+
+    <button type="submit">Generate Invoice</button>
+</form>
+
+<style>
+.form-group {
+    margin-bottom: 15px;
+}
+
+.product-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.qty-input {
+    width: 80px;
+    padding: 5px;
+}
+
+label {
+    flex-grow: 1;
+    margin-right: 15px;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="invoice-container">
+    <h2>Invoice #{{ invoice_id }}</h2>
+    
+    <div class="customer-info">
+        <p><strong>Customer:</strong> {{ customer.name if customer else 'Unknown Customer' }}</p>
+        <p><strong>Contact:</strong> {{ customer.contact if customer else 'N/A' }}</p>
+        <p><strong>Address:</strong> {{ customer.address if customer and customer.address else 'N/A' }}</p>
+    </div>
+
+    {% if items %}
+    <table class="invoice-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.qty }}</td>
+                <td>₹{{ "%.2f"|format(item.price) }}</td>
+                <td>₹{{ "%.2f"|format(item.qty * item.price) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="total-label"><strong>Grand Total</strong></td>
+                <td class="total-amount"><strong>₹{{ "%.2f"|format(grand_total) }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+    {% else %}
+    <div class="no-items">
+        <p>No items found in this invoice.</p>
+    </div>
+    {% endif %}
+
+    <div class="invoice-actions">
+        <button onclick="window.print()" class="btn btn-primary">🖨️ Print Invoice</button>
+        <a href="{{ url_for('billing_page') }}" class="btn btn-secondary">Create New Bill</a>
+    </div>
+</div>
+
+<style>
+.invoice-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.customer-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.invoice-table th, .invoice-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.invoice-table th {
+    background-color: #34495e;
+    color: white;
+}
+
+.total-label {
+    text-align: right;
+}
+
+.total-amount {
+    font-size: 1.2em;
+    color: #27ae60;
+}
+
+.no-items {
+    text-align: center;
+    padding: 30px;
+    color: #7f8c8d;
+}
+
+.invoice-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+</style>
+{% endblock %}

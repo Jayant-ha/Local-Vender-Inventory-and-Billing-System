@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Welcome to the Local Vendor Inventory and Billing System.</p>
+
+<div class="dashboard-cards">
+    <div class="card"><a href="{{ url_for('products_page') }}">📦 Manage Products</a></div>
+    <div class="card"><a href="{{ url_for('customers_page') }}">👥 Manage Customers</a></div>
+    <div class="card"><a href="{{ url_for('billing_page') }}">🧾 Create Bill</a></div>
+    <div class="card"><a href="{{ url_for('reports_page') }}">📊 View Reports</a></div>
+</div>
+{% endblock %}
+
+
+
