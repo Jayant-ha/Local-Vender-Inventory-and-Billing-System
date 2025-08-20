@@ -9,9 +9,7 @@ It reduces manual work, helps maintain accurate stock records, and generates qui
 - 📦 **Inventory Management** – Add, edit, delete products with price & quantity.  
 - 🧾 **Billing System** – Generate invoices with automatic totals, discounts, and tax.  
 - 📊 **Reports** – View daily/monthly sales, stock levels, and profit/loss.  
-- 👨‍💼 **Supplier Management** – Store supplier details and purchase records.  
-- 🔔 **Stock Alerts** – Get notified when stock is running low.  
-- 🔑 **User Authentication (optional)** – Secure login for admin and staff.  
+- 👨‍💼 **Supplier Management** – Store supplier details and purchase records.   
 
 ---
 
